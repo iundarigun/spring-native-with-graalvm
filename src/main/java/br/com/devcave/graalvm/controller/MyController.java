@@ -1,6 +1,7 @@
 package br.com.devcave.graalvm.controller;
 
 import br.com.devcave.graalvm.domain.Person;
+import br.com.devcave.graalvm.service.PersonService;
 import java.util.List;
 import java.util.stream.IntStream;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,12 @@ public class MyController {
   private static final List<Person> persons =
       IntStream.range(0, 10).mapToObj(it -> new Person(it, "Person number " + it)).toList();
 
+  private final PersonService personService;
+
+  public MyController(final PersonService personService) {
+    this.personService = personService;
+  }
+
   @GetMapping
   public String test() {
     return "test";
@@ -22,6 +29,6 @@ public class MyController {
 
   @GetMapping("{id}")
   public Person getById(@PathVariable int id) {
-    return persons.stream().filter(it -> it.id() == id).findFirst().orElse(null);
+    return personService.getById(id);
   }
 }
