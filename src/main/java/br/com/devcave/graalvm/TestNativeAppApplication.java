@@ -1,4 +1,4 @@
-package com.example.demo;
+package br.com.devcave.graalvm;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
