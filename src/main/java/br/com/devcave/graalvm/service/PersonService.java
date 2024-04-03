@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class PersonService {
   private static final List<Person> persons =
-      new ArrayList<>(IntStream.range(0, 10).mapToObj(it -> new Person(it, "Person number " +it)).toList());
+      new ArrayList<>(IntStream.range(0, 10)
+          .mapToObj(it -> new Person(it, "Person number " + it, "last name " + it))
+          .toList());
 
   public Person getById(final int id) {
     return persons.stream().filter(it -> it.getId() == id).findFirst().orElse(null);

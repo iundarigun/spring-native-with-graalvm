@@ -2,9 +2,11 @@ package br.com.devcave.graalvm.controller;
 
 import br.com.devcave.graalvm.domain.Person;
 import br.com.devcave.graalvm.domain.request.PersonRequest;
+import br.com.devcave.graalvm.domain.response.PersonResponse;
 import br.com.devcave.graalvm.service.PersonService;
 import jakarta.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.IntStream;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,12 +29,14 @@ public class MyController {
   }
 
   @GetMapping("{id}")
-  public Person getById(@PathVariable int id) {
-    return personService.getById(id);
+  public PersonResponse getById(@PathVariable int id) {
+    final Person byId = personService.getById(id);
+
+    return Optional.ofNullable(byId).map(it -> new PersonResponse(it.getId(), it.getName(), it.getLastName())).orElse(null);
   }
 
   @PostMapping
   public void postPerson(@RequestBody @Valid final PersonRequest person) {
-    personService.save(new Person(person.getId(), person.getName()));
+    personService.save(new Person(person.getId(), person.getName(), person.getLastName()));
   }
 }
