@@ -1,7 +1,9 @@
 package br.com.devcave.graalvm.controller;
 
 import br.com.devcave.graalvm.domain.Person;
+import br.com.devcave.graalvm.domain.request.PersonRequest;
 import br.com.devcave.graalvm.service.PersonService;
+import jakarta.validation.Valid;
 import java.util.List;
 import java.util.stream.IntStream;
 import lombok.RequiredArgsConstructor;
@@ -30,7 +32,7 @@ public class MyController {
   }
 
   @PostMapping
-  public void postPerson(@RequestBody final Person person) {
-    personService.save(person);
+  public void postPerson(@RequestBody @Valid final PersonRequest person) {
+    personService.save(new Person(person.getId(), person.getName()));
   }
 }
