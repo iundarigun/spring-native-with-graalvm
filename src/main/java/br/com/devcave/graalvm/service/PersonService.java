@@ -11,6 +11,6 @@ public class PersonService {
       IntStream.range(0, 10).mapToObj(it -> new Person(it, "Person number " + it)).toList();
 
   public Person getById(final int id) {
-    return persons.stream().filter(it -> it.id() == id).findFirst().orElse(null);
+    return persons.stream().filter(it -> it.getId() == id).findFirst().orElse(null);
   }
 }
