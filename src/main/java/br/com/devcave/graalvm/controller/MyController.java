@@ -7,6 +7,8 @@ import java.util.stream.IntStream;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,5 +27,10 @@ public class MyController {
   @GetMapping("{id}")
   public Person getById(@PathVariable int id) {
     return personService.getById(id);
+  }
+
+  @PostMapping
+  public void postPerson(@RequestBody final Person person) {
+    personService.save(person);
   }
 }
