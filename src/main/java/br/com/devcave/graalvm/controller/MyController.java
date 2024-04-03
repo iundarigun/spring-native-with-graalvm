@@ -1,6 +1,7 @@
 package br.com.devcave.graalvm.controller;
 
 import br.com.devcave.graalvm.domain.Person;
+import br.com.devcave.graalvm.domain.mapper.PersonMapper;
 import br.com.devcave.graalvm.domain.request.PersonRequest;
 import br.com.devcave.graalvm.domain.response.PersonResponse;
 import br.com.devcave.graalvm.service.PersonService;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class MyController {
 
   private final PersonService personService;
+  private final PersonMapper mapper;
 
   @GetMapping
   public String test() {
@@ -32,11 +34,11 @@ public class MyController {
   public PersonResponse getById(@PathVariable int id) {
     final Person byId = personService.getById(id);
 
-    return Optional.ofNullable(byId).map(it -> new PersonResponse(it.getId(), it.getName(), it.getLastName())).orElse(null);
+    return Optional.ofNullable(byId).map(mapper::toResponse).orElse(null);
   }
 
   @PostMapping
   public void postPerson(@RequestBody @Valid final PersonRequest person) {
-    personService.save(new Person(person.getId(), person.getName(), person.getLastName()));
+    personService.save(mapper.toPerson(person));
   }
 }
