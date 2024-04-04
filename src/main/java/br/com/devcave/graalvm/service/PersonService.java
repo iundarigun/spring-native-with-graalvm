@@ -6,6 +6,7 @@ import jakarta.annotation.PostConstruct;
 import java.util.stream.IntStream;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -16,6 +17,7 @@ public class PersonService {
     return personRepository.findById(id).orElse(null);
   }
 
+  @Transactional
   public void save(final Person person) {
     personRepository.save(person);
   }
@@ -23,7 +25,7 @@ public class PersonService {
   @PostConstruct
   public void fillRepository() {
     personRepository.saveAll(IntStream.range(0, 10)
-        .mapToObj(it -> new Person(it, "Person number " + it, "last name " + it))
+        .mapToObj(it -> new Person(null, "Person number " + it, "last name " + it, null, null, null))
         .toList());
 
   }
