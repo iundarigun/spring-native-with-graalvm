@@ -32,8 +32,9 @@ docker run --rm -p 1980:8080 -e SPRING_PROFILES_ACTIVE=docker iundarigun/native
 - database @CreatedDate and @LastModifiedDate ✅
   - Unsolved issue -> local compile is not working -> GC exception
 - flyway ✅
-
 - Feign to call external endpoint
+
+
 - configure url by env vars
 - security
 - kafka

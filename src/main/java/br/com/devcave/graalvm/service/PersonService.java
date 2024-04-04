@@ -2,8 +2,6 @@ package br.com.devcave.graalvm.service;
 
 import br.com.devcave.graalvm.domain.Person;
 import br.com.devcave.graalvm.repository.PersonRepository;
-import jakarta.annotation.PostConstruct;
-import java.util.stream.IntStream;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class PersonService {
   private final PersonRepository personRepository;
 
+  @Transactional(readOnly = true)
   public Person getById(final int id) {
     return personRepository.findById(id).orElse(null);
   }
@@ -20,13 +19,5 @@ public class PersonService {
   @Transactional
   public void save(final Person person) {
     personRepository.save(person);
-  }
-
-  @PostConstruct
-  public void fillRepository() {
-    personRepository.saveAll(IntStream.range(0, 10)
-        .mapToObj(it -> new Person(null, "Person number " + it, "last name " + it, null, null, null))
-        .toList());
-
   }
 }

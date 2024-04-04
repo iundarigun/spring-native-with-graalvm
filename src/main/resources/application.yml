@@ -3,3 +3,9 @@ spring:
     name: test-native-app
   jpa:
     open-in-view: false
+  cloud:
+    openfeign:
+      client:
+        config:
+          universityClient:
+            url: http://universities.hipolabs.com
