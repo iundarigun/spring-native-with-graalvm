@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  database:
+    image: postgres
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=mysecret
+      - POSTGRES_DB=graalvmtest
+    ports:
+      - "5500:5432"

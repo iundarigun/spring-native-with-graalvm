@@ -1,2 +1,7 @@
 server:
   port: 1980
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5500/graalvmtest
+    username: myuser
+    password: mysecret

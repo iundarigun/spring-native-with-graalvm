@@ -1,14 +1,23 @@
 package br.com.devcave.graalvm.domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
+@Entity
+@NoArgsConstructor
 @AllArgsConstructor
-public class Person{
-  private int id;
+public class Person {
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer id;
   private String name;
   private String lastName;
 }

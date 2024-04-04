@@ -1,5 +1,5 @@
 # Using Oracle GraalVM for JDK 17
-FROM ghcr.io/graalvm/native-image:ol7-java17-22.3.0 AS builder
+FROM ghcr.io/graalvm/native-image:ol7-java17-22.3.3 AS builder
 
 # Set the working directory to /home/app
 WORKDIR /build
