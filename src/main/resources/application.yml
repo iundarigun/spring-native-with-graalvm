@@ -8,4 +8,4 @@ spring:
       client:
         config:
           universityClient:
-            url: http://universities.hipolabs.com
+            url: ${UNIVERSITY_URL:}

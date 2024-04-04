@@ -5,3 +5,9 @@ spring:
     url: jdbc:postgresql://localhost:5500/graalvmtest
     username: myuser
     password: mysecret
+  cloud:
+    openfeign:
+      client:
+        config:
+          universityClient:
+            url: http://universities.hipolabs.com
