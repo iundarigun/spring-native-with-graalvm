@@ -31,8 +31,7 @@ docker run --rm -p 1980:8080 -e SPRING_PROFILES_ACTIVE=docker iundarigun/native
   - Issues: need to add `export GRADLE_OPTS="-Xmx4096m -Dorg.gradle.daemon=false"` before compile in local
 - database @CreatedDate and @LastModifiedDate ✅
   - Unsolved issue -> local compile is not working -> GC exception
-
-- flyway
+- flyway ✅
 
 - Feign to call external endpoint
 - configure url by env vars
