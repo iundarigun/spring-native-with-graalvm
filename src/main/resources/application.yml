@@ -3,6 +3,10 @@ spring:
     name: test-native-app
   jpa:
     open-in-view: false
+  security:
+    user:
+      name: admin
+      password: secret
   cloud:
     openfeign:
       client:
