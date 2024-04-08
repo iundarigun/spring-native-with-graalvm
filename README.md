@@ -35,6 +35,6 @@ docker run --rm -p 1980:8080 -e SPRING_PROFILES_ACTIVE=docker -e UNIVERSITY_URL=
 - Feign to call external endpoint ✅
 - configure url by env vars ✅
 - security basic username and password ✅
+- kafka ✅
 
-- kafka
 - security with jwt

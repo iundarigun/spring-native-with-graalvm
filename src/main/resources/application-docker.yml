@@ -3,3 +3,5 @@ spring:
     url: jdbc:postgresql://host.docker.internal:5500/graalvmtest
     username: myuser
     password: mysecret
+  kafka:
+    bootstrap-servers: host.docker.internal:9092

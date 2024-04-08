@@ -11,6 +11,7 @@ import jakarta.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,6 +28,7 @@ public class MyController {
   private final PersonService personService;
   private final PersonMapper mapper;
   private final UniversityClient universityClient;
+  private final KafkaTemplate<String, PersonResponse> kafkaTemplate;
 
   @GetMapping
   public String test() {
@@ -42,7 +44,8 @@ public class MyController {
 
   @PostMapping
   public void postPerson(@RequestBody @Valid final PersonRequest person) {
-    personService.save(mapper.toPerson(person));
+    final Person saved = personService.save(mapper.toPerson(person));
+    kafkaTemplate.send("person-topic", saved.getId().toString(), mapper.toResponse(saved));
   }
 
   @GetMapping("external-call")

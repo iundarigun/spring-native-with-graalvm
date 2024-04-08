@@ -17,7 +17,7 @@ public class PersonService {
   }
 
   @Transactional
-  public void save(final Person person) {
-    personRepository.save(person);
+  public Person save(final Person person) {
+    return personRepository.save(person);
   }
 }
